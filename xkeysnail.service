@@ -1,0 +1,15 @@
+# /etc/systemd/system/xkeysnail.service
+[Unit]
+Description=Service for xkeysnail
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/local/bin/xkeysnail --devices "Apple Inc. Apple Internal Keyboard / Trackpad" "Logitech MX Keys Mac" --watch /home/ryan/.xkeysnail --quiet
+StandardOutput=null
+Restart=always
+Type=simple
+RestartSec=10
+User=root
+
+[Install]
+WantedBy=graphical.target
