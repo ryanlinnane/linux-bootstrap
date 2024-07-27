@@ -1,0 +1,88 @@
+# Run this to debug
+#
+# example /usr/local/bin/xkeysnail --devices "Apple Inc. Apple Internal Keyboard / Trackpad" "Logitech MX Keys Mac" --watch /home/ryan/.config/xkeysnail/config.py
+
+# Import the required library
+from xkeysnail.transform import *
+import re
+import os
+
+# define timeout for multipurpose_modmap
+define_timeout(.1)
+# Good examples https://github.com/mooz/xkeysnail/blob/master/example/config.py
+
+# Keybindings for Zeal https://github.com/zealdocs/zeal/
+define_keymap(re.compile("Tilix"), {
+    # Ctrl+s to focus search area
+    K("Super-w"): K("C-Shift-w"),
+#    K("C-a"): K("C-a"),
+#    K("C-e"): K("C-e"),
+}, "Tilix")
+
+define_keymap(re.compile("Chromium-browser"), {
+   K("Super-Shift-t"): K("C-Shift-t"),
+   K("Super-Shift-Left_Brace"): K("C-Page_Up"),
+   K("Super-Shift-Right_Brace"): K("C-Page_Down"),
+   K("Alt-LEFT"): K("Alt-LEFT"),  # Maps Alt+Left to Ctrl+Left
+   K("Alt-RIGHT"): K("Alt-RIGHT"),  # Maps Alt+Left to Ctrl+Left
+   K("LM-LEFT"): K("LC-LEFT"),  # Maps option+left to back word
+   K("LM-RIGHT"): K("LC-RIGHT"),  # Maps option+right to forward word
+   K("LSuper-LEFT_BRACE"): K("LM-LEFT"),
+   K("LSuper-RIGHT_BRACE"): K("LM-RIGHT"),
+   K("LSuper-LEFT"): K("LM-LEFT"),
+   K("LSuper-RIGHT"): K("LM-RIGHT"),
+#   K("C-e"): K("C-e"),
+#   K("C-a"): K("C-a"),
+}, "Chromium-browser")
+
+def monitor():
+    os.system("bash /home/ryan/bin/monitor")
+
+# Define the key remapping
+define_keymap(None, {
+    K("CAPSLOCK"): K("ESC"),
+    K("Super-M"): monitor,
+    K("Super-Shift-EQUAL"): K("Shift-C-EQUAL"),
+    K("Super-Shift-Minus"): K("Shift-C-Minus"),
+    # Map Super+t to Control+t
+    K("Super-t"): K("C-t"),
+    #K("Super-Shift-t"): K("C-Shift-t"),
+    #K("Super-Shift-R"): K("Control-Shift-R")
+    K("Super-Shift-a"): K("C-Shift-a"),
+    K("Super-w"): K("C-w"),
+    #K("Super-w"): [K("C-Shift-w"), K("C-w")],
+    K("Super-c"): K("C-c"),
+    #K("Super-h"): K("C-h"),
+    K("Super-v"): K("C-v"),
+    K("Super-Shift-v"): K("C-Shift-v"),
+    K("Super-a"): K("C-a"),
+    K("Super-s"): K("C-s"),
+    K("Super-n"): K("C-n"),
+    K("Super-l"): K("C-l"),
+    K("Super-l"): K("C-l"),
+    K("Super-f"): K("C-f"),
+    K("Super-z"): K("C-z"),
+    K("Super-Shift-z"): K("C-Shift-z"),
+    K("Super-Shift-b"): K("C-Shift-b"),
+    K("Super-Shift-KEY_8"): K("C-Shift-KEY_8"),
+    K("Super-x"): K("C-x"),
+    K("Super-k"): K("C-k"),
+    K("Super-r"): K("C-r"),
+    K("Super-d"): K("C-d"),
+    K("C-a"): K("home"),
+    K("C-e"): K("end"),
+    K("Super-key_1"): K("C-key_1"),
+    K("Super-key_2"): K("C-key_2"),
+    K("Super-key_3"): K("C-key_3"),
+    K("Super-key_4"): K("C-key_4"),
+    K("Super-key_5"): K("C-key_5"),
+    K("Super-key_6"): K("C-key_6"),
+    K("Super-key_7"): K("C-key_7"),
+    K("Super-key_8"): K("C-key_8"),
+    K("Super-key_9"): K("C-key_9"),
+    K("Super-key_0"): K("C-key_0"),
+    K("Alt-LEFT"): K("C-LEFT"),  # Maps Alt+Left to Ctrl+Left
+    K("Alt-RIGHT"): K("C-RIGHT"),  # Maps Alt+Right to Ctrl+Right
+    K("LM-LEFT"): K("LM-B"),  # Maps option+left to back word
+    K("LM-RIGHT"): K("LM-F"),  # Maps option+right to forward word
+})
